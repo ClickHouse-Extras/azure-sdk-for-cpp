@@ -62,7 +62,7 @@ std::chrono::milliseconds CalculateExponentialDelay(
 {
   if (jitterFactor < 0.8 || jitterFactor > 1.3)
   {
-    std::mt19937 rng(time(NULL));
+    std::minstd_rand rng((std::minstd_rand::result_type)time(nullptr)); /// a fast rng with bad quality is okay here
     std::uniform_real_distribution<> distr(0.0, 1.0);
     double rand = distr(rng);
 
